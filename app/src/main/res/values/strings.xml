@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">baseConventer</string>
+    <string name="enter_number">Enter number</string>
+    <string name="binary">Binary</string>
+    <string name="octal">Octal</string>
+    <string name="decimal">Decimal</string>
+    <string name="hexadecimal">HexaDecimal</string>
+</resources>
