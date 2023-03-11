@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
                     binaryOutput.text = inputInt.toString(2)
                     octalOutput.text = inputInt.toString(8)
                     decimalOutput.text = inputInt.toString(10)
-                    hexadecimalOutput.text = inputInt.toString(16)
+                    hexadecimalOutput.text = prevInputStr
 
                 } else {
                     binaryOutput.text = ""
