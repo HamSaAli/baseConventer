@@ -4,5 +4,6 @@
     <string name="binary">Binary</string>
     <string name="octal">Octal</string>
     <string name="decimal">Decimal</string>
-    <string name="hexadecimal">HexaDecimal</string>
+    <string name="hexadecimal">Hexadecimal</string>
+
 </resources>
