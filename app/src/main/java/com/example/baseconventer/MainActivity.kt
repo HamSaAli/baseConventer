@@ -9,19 +9,25 @@ import android.widget.RadioGroup
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
-
+    private lateinit var baseRadioGroup: RadioGroup
+    private lateinit var binaryOutput: TextView
+    private lateinit var octalOutput: TextView
+    private lateinit var decimalOutput: TextView
+    private lateinit var hexadecimalOutput: TextView
+    private lateinit var inputField: EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val inputField =  findViewById<EditText>(R.id.inputField)
-        val baseRadioGroup =  findViewById<RadioGroup>(R.id.baseRadioGroup)
+        initviews()
+        setListeners()
+    }
 
+    private fun setListeners() {
 
         baseRadioGroup.setOnCheckedChangeListener { _, _ ->
             updateOutputs(inputField.text.toString())
         }
-
 
         inputField.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -32,13 +38,28 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun updateOutputs(inputStr: String) {
-        val baseRadioGroup = findViewById<RadioGroup>(R.id.baseRadioGroup)
-        val binaryOutput = findViewById<TextView>(R.id.binaryOutput)
-        val octalOutput = findViewById<TextView>(R.id.octalOutput)
-        val decimalOutput = findViewById<TextView>(R.id.decimalOutput)
-        val hexadecimalOutput = findViewById<TextView>(R.id.hexadecimalOutput)
+    private fun initviews() {
 
+        baseRadioGroup = findViewById(R.id.baseRadioGroup)
+        binaryOutput = findViewById(R.id.binaryOutput)
+        octalOutput = findViewById(R.id.octalOutput)
+        decimalOutput = findViewById(R.id.decimalOutput)
+        hexadecimalOutput = findViewById(R.id.hexadecimalOutput)
+        inputField = findViewById(R.id.inputField)
+    }
+
+    private fun updateOutputs(inputStr: String) {
+
+        val invalidChars = "qwrtyuiopsgjhklzxcvbnm@!$#^%*()-_=+{}[]'\":;/?.<>"
+
+        if (inputStr.any { it.lowercaseChar() in invalidChars }) {
+
+            binaryOutput.text = "Invalid input"
+            octalOutput.text = "Invalid input"
+            decimalOutput.text = "Invalid input"
+            hexadecimalOutput.text = "Invalid input"
+            return
+        }
 
         val selectedBase = when (baseRadioGroup.checkedRadioButtonId) {
             R.id.binaryRadio -> 2
